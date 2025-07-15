@@ -4,7 +4,7 @@ metadata:
   labels:
     app.kubernetes.io/managed-by: kustomize
     app.kubernetes.io/name: depdag-controller
-  name: depdag-openfaas-fn
+  name: depdag-npta-simple-calls
   namespace: openfaas-fn
 spec:
   nodes:
