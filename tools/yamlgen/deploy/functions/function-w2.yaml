@@ -2,14 +2,14 @@ apiVersion: openfaas.com/v1
 kind: Function
 metadata:
   name: function-w2
-  namespace: npta-simple-calls
+  namespace: openfaas-fn
 spec:
-  image: itspeetah/npta-simple-calls-w2
+  image: itspeetah/npta-simple-calls-fn-w2:latest
   labels:
-    com.openfaas.scale.factor: 20
-    com.openfaas.scale.max: 100
-    com.openfaas.scale.min: 1
-    com.openfaas.scale.zero: false
+    com.openfaas.scale.factor: '20'
+    com.openfaas.scale.max: '100'
+    com.openfaas.scale.min: '1'
+    com.openfaas.scale.zero: 'false'
     edgeautoscaler.polimi.it/scheduler: edge-autoscaler
   limits:
     cpu: 200m
@@ -25,21 +25,22 @@ kind: Service
 metadata:
   labels:
     name: function-w2
-    namespace: npta-simple-calls
+    namespace: openfaas-fn
   name: function-w2
+  namespace: openfaas-fn
 spec:
   ports:
   - port: 80
     targetPort: 8080
   selector:
     edgeautoscaler.polimi.it/function-name: function-w2
-    edgeautoscaler.polimi.it/function-namespace: npta-simple-calls
+    edgeautoscaler.polimi.it/function-namespace: openfaas-fn
 ---
 apiVersion: systemautoscaler.polimi.it/v1beta1
 kind: ServiceLevelAgreement
 metadata:
   name: function-w2
-  namespace: npta-simple-calls
+  namespace: openfaas-fn
 spec:
   defaultResources:
     cpu: 300m

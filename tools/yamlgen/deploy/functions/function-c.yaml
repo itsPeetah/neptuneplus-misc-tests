@@ -1,20 +1,20 @@
 apiVersion: openfaas.com/v1
 kind: Function
 metadata:
-  name: function-a
-  namespace: npta-simple-calls
+  name: function-c
+  namespace: openfaas-fn
 spec:
-  image: itspeetah/npta-simple-calls-a
+  image: itspeetah/npta-simple-calls-fn-c:latest
   labels:
-    com.openfaas.scale.factor: 20
-    com.openfaas.scale.max: 100
-    com.openfaas.scale.min: 1
-    com.openfaas.scale.zero: false
+    com.openfaas.scale.factor: '20'
+    com.openfaas.scale.max: '100'
+    com.openfaas.scale.min: '1'
+    com.openfaas.scale.zero: 'false'
     edgeautoscaler.polimi.it/scheduler: edge-autoscaler
   limits:
     cpu: 200m
     memory: 1000Mi
-  name: function-a
+  name: function-c
   readOnlyRootFilesystem: false
   requests:
     cpu: 200m
@@ -24,22 +24,23 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    name: function-a
-    namespace: npta-simple-calls
-  name: function-a
+    name: function-c
+    namespace: openfaas-fn
+  name: function-c
+  namespace: openfaas-fn
 spec:
   ports:
   - port: 80
     targetPort: 8080
   selector:
-    edgeautoscaler.polimi.it/function-name: function-a
-    edgeautoscaler.polimi.it/function-namespace: npta-simple-calls
+    edgeautoscaler.polimi.it/function-name: function-c
+    edgeautoscaler.polimi.it/function-namespace: openfaas-fn
 ---
 apiVersion: systemautoscaler.polimi.it/v1beta1
 kind: ServiceLevelAgreement
 metadata:
-  name: function-a
-  namespace: npta-simple-calls
+  name: function-c
+  namespace: openfaas-fn
 spec:
   defaultResources:
     cpu: 300m
@@ -54,7 +55,7 @@ spec:
     memory: 10Mi
   recommenderLogic: ' dependencyAware'
   service:
-    container: function-a
+    container: function-c
     selector:
       matchLabels:
-        name: function-a
+        name: function-c

@@ -4,67 +4,67 @@ metadata:
   labels:
     app.kubernetes.io/managed-by: kustomize
     app.kubernetes.io/name: depdag-controller
-  name: depdag-npta-simple-calls
-  namespace: npta-simple-calls
+  name: depdag-openfaas-fn
+  namespace: openfaas-fn
 spec:
   nodes:
   - functionName: function-a
-    functionNamespace: npta-simple-calls
+    functionNamespace: openfaas-fn
     invocations:
     - edgeId: 1
       edgeMultiplier: 1
       functionName: function-w2
-      functionNamespace: npta-simple-calls
+      functionNamespace: openfaas-fn
     - edgeId: 2
       edgeMultiplier: 1
       functionName: function-rw
-      functionNamespace: npta-simple-calls
+      functionNamespace: openfaas-fn
     nominalResponseTime: 50m
   - functionName: function-b
-    functionNamespace: npta-simple-calls
+    functionNamespace: openfaas-fn
     invocations:
     - edgeId: 3
       edgeMultiplier: 1
       functionName: function-rw
-      functionNamespace: npta-simple-calls
+      functionNamespace: openfaas-fn
     - edgeId: 3
       edgeMultiplier: 1
       functionName: function-w2
-      functionNamespace: npta-simple-calls
+      functionNamespace: openfaas-fn
     nominalResponseTime: 50m
   - functionName: function-c
-    functionNamespace: npta-simple-calls
+    functionNamespace: openfaas-fn
     invocations:
     - edgeId: 4
       edgeMultiplier: 1
       functionName: function-d
-      functionNamespace: npta-simple-calls
+      functionNamespace: openfaas-fn
     - edgeId: 4
       edgeMultiplier: 1
       functionName: function-w2
-      functionNamespace: npta-simple-calls
+      functionNamespace: openfaas-fn
     nominalResponseTime: 50m
   - functionName: function-d
-    functionNamespace: npta-simple-calls
+    functionNamespace: openfaas-fn
     invocations:
     - edgeId: 5
       edgeMultiplier: 1
       functionName: function-rw
-      functionNamespace: npta-simple-calls
+      functionNamespace: openfaas-fn
     - edgeId: 5
       edgeMultiplier: 1
       functionName: function-rw
-      functionNamespace: npta-simple-calls
+      functionNamespace: openfaas-fn
     - edgeId: 6
       edgeMultiplier: 1
       functionName: function-w2
-      functionNamespace: npta-simple-calls
+      functionNamespace: openfaas-fn
     nominalResponseTime: 50m
   - functionName: function-w2
-    functionNamespace: npta-simple-calls
+    functionNamespace: openfaas-fn
     invocations: []
     nominalResponseTime: 50m
   - functionName: function-rw
-    functionNamespace: npta-simple-calls
+    functionNamespace: openfaas-fn
     invocations: []
     nominalResponseTime: 50m
