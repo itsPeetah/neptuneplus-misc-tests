@@ -4,7 +4,7 @@ metadata:
   name: function-b
   namespace: openfaas-fn
 spec:
-  image: itspeetah/npta-simple-calls-fn-b:latest
+  image: itspeetah/npta-simple-calls-b:latest
   labels:
     com.openfaas.scale.factor: '20'
     com.openfaas.scale.max: '100'
@@ -53,7 +53,7 @@ spec:
   minResources:
     cpu: 300m
     memory: 10Mi
-  recommenderLogic: ' dependencyAware'
+  recommenderLogic: dependencyAware
   service:
     container: function-b
     selector:

@@ -32,8 +32,8 @@ FROM alpine:latest AS function-a
 EXPOSE 8080
 WORKDIR /app
 
-ENV W2_URL="http://function-w2.npta-simple-calls.svc.cluster.local:8080"
-ENV RW_URL="http://function-rw.npta-simple-calls.svc.cluster.local:8080"
+ENV W2_URL="http://function-w2.openfaas-fn.svc.cluster.local:8080"
+ENV RW_URL="http://function-rw.openfaas-fn.svc.cluster.local:8080"
 
 COPY --from=builder /app/bin/a .
 ENTRYPOINT ["./a"]
@@ -43,8 +43,8 @@ FROM alpine:latest AS function-b
 EXPOSE 8080
 WORKDIR /app
 
-ENV W2_URL="http://function-w2.npta-simple-calls.svc.cluster.local:8080"
-ENV RW_URL="http://function-rw.npta-simple-calls.svc.cluster.local:8080"
+ENV W2_URL="http://function-w2.openfaas-fn.svc.cluster.local:8080"
+ENV RW_URL="http://function-rw.openfaas-fn.svc.cluster.local:8080"
 
 COPY --from=builder /app/bin/b .
 ENTRYPOINT ["./b"]
@@ -54,8 +54,8 @@ FROM alpine:latest AS function-c
 EXPOSE 8080
 WORKDIR /app
 
-ENV D_URL="http://function-d.npta-simple-calls.svc.cluster.local:8080"
-ENV W2_URL="http://function-w2.npta-simple-calls.svc.cluster.local:8080"
+ENV D_URL="http://function-d.openfaas-fn.svc.cluster.local:8080"
+ENV W2_URL="http://function-w2.openfaas-fn.svc.cluster.local:8080"
 
 COPY --from=builder /app/bin/c .
 ENTRYPOINT ["./c"]
@@ -79,7 +79,7 @@ FROM alpine:latest AS function-d
 EXPOSE 8080
 WORKDIR /app
 
-ENV RW_URL="http://function-rw.npta-simple-calls.svc.cluster.local:8080"
+ENV RW_URL="http://function-rw.openfaas-fn.svc.cluster.local:8080"
 
 COPY --from=builder /app/bin/d .
 ENTRYPOINT ["./d"]
