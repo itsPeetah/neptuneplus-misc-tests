@@ -1,0 +1,72 @@
+version: "3.8"
+
+services:
+  A:
+    image: itspeetah/npta-simple-calls-a:latest
+    ports:
+      - "8081:8080"
+    environment:
+      B_URL: http://B:8080
+      C_URL: http://C:8080
+      D_URL: http://D:8080
+      W2_URL: http://W2:8080
+      RW_URL: http://RW:8080
+
+  B:
+    image: itspeetah/npta-simple-calls-b:latest
+    ports:
+      - "8082:8080"
+    environment:
+      A_URL: http://A:8080
+      C_URL: http://C:8080
+      D_URL: http://D:8080
+      W2_URL: http://W2:8080
+      RW_URL: http://RW:8080
+
+  C:
+    image: itspeetah/npta-simple-calls-c:latest
+    ports:
+      - "8083:8080"
+    environment:
+      A_URL: http://A:8080
+      B_URL: http://B:8080
+      D_URL: http://D:8080
+      W2_URL: http://W2:8080
+      RW_URL: http://RW:8080
+
+  D:
+    image: itspeetah/npta-simple-calls-d:latest
+    ports:
+      - "8084:8080"
+    environment:
+      A_URL: http://A:8080
+      B_URL: http://B:8080
+      C_URL: http://C:8080
+      W2_URL: http://W2:8080
+      RW_URL: http://RW:8080
+
+  W2:
+    image: itspeetah/npta-simple-calls-w2:latest
+    ports:
+      - "8085:8080"
+    environment:
+      A_URL: http://A:8080
+      B_URL: http://B:8080
+      C_URL: http://C:8080
+      D_URL: http://D:8080
+      RW_URL: http://RW:8080
+
+  RW:
+    image: itspeetah/npta-simple-calls-rw:latest
+    ports:
+      - "8086:8080"
+    environment:
+      A_URL: http://A:8080
+      B_URL: http://B:8080
+      C_URL: http://C:8080
+      D_URL: http://D:8080
+      W2_URL: http://W2:8080
+
+networks:
+  default:
+    name: app-network
