@@ -19,7 +19,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	for _, url := range urls {
 		// Check for the next service URL (Function B)
 		if url != "" {
-			log.Printf("Function A calling %s", url)
+			log.Printf("Function C calling %s", url)
 			resp, err := http.Get(url)
 			if err != nil {
 				log.Printf("Error calling Function %s: %v", url, err)
