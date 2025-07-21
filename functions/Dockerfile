@@ -32,8 +32,12 @@ FROM alpine:latest AS function-a
 EXPOSE 8080
 WORKDIR /app
 
-ENV W2_URL="http://function-w2.openfaas-fn.svc.cluster.local"
-ENV RW_URL="http://function-rw.openfaas-fn.svc.cluster.local"
+ENV A_URL="http://host.k3d.internal:8090/function/openfaas-fn/function-a"
+ENV B_URL="http://host.k3d.internal:8090/function/openfaas-fn/function-b"
+ENV C_URL="http://host.k3d.internal:8090/function/openfaas-fn/function-c"
+ENV D_URL="http://host.k3d.internal:8090/function/openfaas-fn/function-d"
+ENV W2_URL="http://host.k3d.internal:8090/function/openfaas-fn/function-w2"
+ENV RW_URL="http://host.k3d.internal:8090/function/openfaas-fn/function-rw"
 
 COPY --from=builder /app/bin/a .
 ENTRYPOINT ["./a"]
@@ -43,8 +47,12 @@ FROM alpine:latest AS function-b
 EXPOSE 8080
 WORKDIR /app
 
-ENV W2_URL="http://function-w2.openfaas-fn.svc.cluster.local"
-ENV RW_URL="http://function-rw.openfaas-fn.svc.cluster.local"
+ENV A_URL="http://host.k3d.internal:8090/function/openfaas-fn/function-a"
+ENV B_URL="http://host.k3d.internal:8090/function/openfaas-fn/function-b"
+ENV C_URL="http://host.k3d.internal:8090/function/openfaas-fn/function-c"
+ENV D_URL="http://host.k3d.internal:8090/function/openfaas-fn/function-d"
+ENV W2_URL="http://host.k3d.internal:8090/function/openfaas-fn/function-w2"
+ENV RW_URL="http://host.k3d.internal:8090/function/openfaas-fn/function-rw"
 
 COPY --from=builder /app/bin/b .
 ENTRYPOINT ["./b"]
@@ -54,8 +62,12 @@ FROM alpine:latest AS function-c
 EXPOSE 8080
 WORKDIR /app
 
-ENV D_URL="http://function-d.openfaas-fn.svc.cluster.local"
-ENV W2_URL="http://function-w2.openfaas-fn.svc.cluster.local"
+ENV A_URL="http://host.k3d.internal:8090/function/openfaas-fn/function-a"
+ENV B_URL="http://host.k3d.internal:8090/function/openfaas-fn/function-b"
+ENV C_URL="http://host.k3d.internal:8090/function/openfaas-fn/function-c"
+ENV D_URL="http://host.k3d.internal:8090/function/openfaas-fn/function-d"
+ENV W2_URL="http://host.k3d.internal:8090/function/openfaas-fn/function-w2"
+ENV RW_URL="http://host.k3d.internal:8090/function/openfaas-fn/function-rw"
 
 COPY --from=builder /app/bin/c .
 ENTRYPOINT ["./c"]
@@ -79,7 +91,12 @@ FROM alpine:latest AS function-d
 EXPOSE 8080
 WORKDIR /app
 
-ENV RW_URL="http://function-rw.openfaas-fn.svc.cluster.local"
+ENV A_URL="http://host.k3d.internal:8090/function/openfaas-fn/function-a"
+ENV B_URL="http://host.k3d.internal:8090/function/openfaas-fn/function-b"
+ENV C_URL="http://host.k3d.internal:8090/function/openfaas-fn/function-c"
+ENV D_URL="http://host.k3d.internal:8090/function/openfaas-fn/function-d"
+ENV W2_URL="http://host.k3d.internal:8090/function/openfaas-fn/function-w2"
+ENV RW_URL="http://host.k3d.internal:8090/function/openfaas-fn/function-rw"
 
 COPY --from=builder /app/bin/d .
 ENTRYPOINT ["./d"]
