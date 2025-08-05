@@ -20,7 +20,15 @@ func handler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	http.HandleFunc("/", handler)
+	http.HandleFunc("/handle", handler)
+	http.HandleFunc("/_/ready", func(w http.ResponseWriter, r *http.Request) {
+		w.WriteHeader(http.StatusOK)
+		fmt.Fprint(w, "OK")
+	})
+	http.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {
+		w.WriteHeader(http.StatusOK)
+		fmt.Fprint(w, "OK")
+	})
 	port := "8080"
 	log.Printf("Function W2 server starting on port %s", port)
 	if err := http.ListenAndServe(":"+port, nil); err != nil {

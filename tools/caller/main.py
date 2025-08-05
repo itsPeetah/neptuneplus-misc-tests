@@ -31,6 +31,7 @@ class Caller:
     def _call_loop(self):
         print(f'[Caller] Starting caller "{self.alias}"')
         for i in range(self.count):
+            time.sleep(1)
             print(f"[{self.alias} #{i+1}] Calling {self.url}")
             start = time.time()
             _ = self._call()
@@ -61,22 +62,22 @@ class Spawner:
 saver = Saver("times.csv")
 
 caller_a1 = Caller(
-    "http://localhost:8080/function/openfaas-fn/function-a", 100, "A1", saver
+    "http://localhost:8080/function/openfaas-fn/function-a/handle", 100, "A1", saver
 )
 caller_a2 = Caller(
-    "http://localhost:8080/function/openfaas-fn/function-a", 100, "A2", saver
+    "http://localhost:8080/function/openfaas-fn/function-a/handle", 100, "A2", saver
 )
 caller_b1 = Caller(
-    "http://localhost:8080/function/openfaas-fn/function-b", 100, "B1", saver
+    "http://localhost:8080/function/openfaas-fn/function-b/handle", 100, "B1", saver
 )
 caller_b2 = Caller(
-    "http://localhost:8080/function/openfaas-fn/function-b", 100, "B2", saver
+    "http://localhost:8080/function/openfaas-fn/function-b/handle", 100, "B2", saver
 )
 caller_c1 = Caller(
-    "http://localhost:8080/function/openfaas-fn/function-c", 100, "C1", saver
+    "http://localhost:8080/function/openfaas-fn/function-c/handle", 100, "C1", saver
 )
 caller_c2 = Caller(
-    "http://localhost:8080/function/openfaas-fn/function-c", 100, "C2", saver
+    "http://localhost:8080/function/openfaas-fn/function-c/handle", 100, "C2", saver
 )
 
 spawner = Spawner([caller_a1, caller_a2, caller_b1, caller_b2, caller_c1, caller_c2])

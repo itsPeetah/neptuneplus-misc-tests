@@ -15,8 +15,6 @@ COPY . .
 
 # Build each function's binary
 # CGO_ENABLED=0 is important for static binaries, useful for scratch/alpine images
-# -a -installsuffix cgo reduces image size
-# -o specifies the output file name
 RUN CGO_ENABLED=0 GOOS=linux go build -ldflags="-s -w" -o /app/bin/a ./cmd/a
 RUN CGO_ENABLED=0 GOOS=linux go build -ldflags="-s -w" -o /app/bin/b ./cmd/b
 RUN CGO_ENABLED=0 GOOS=linux go build -ldflags="-s -w" -o /app/bin/c ./cmd/c
@@ -32,12 +30,12 @@ FROM alpine:latest AS function-a
 EXPOSE 8080
 WORKDIR /app
 
-ENV A_URL="http://host.k3d.internal:8090/function/openfaas-fn/function-a"
-ENV B_URL="http://host.k3d.internal:8090/function/openfaas-fn/function-b"
-ENV C_URL="http://host.k3d.internal:8090/function/openfaas-fn/function-c"
-ENV D_URL="http://host.k3d.internal:8090/function/openfaas-fn/function-d"
-ENV W2_URL="http://host.k3d.internal:8090/function/openfaas-fn/function-w2"
-ENV RW_URL="http://host.k3d.internal:8090/function/openfaas-fn/function-rw"
+ENV A_URL="http://dispatcher.default.svc.cluster.local/function/openfaas-fn/function-a/handle"
+ENV B_URL="http://dispatcher.default.svc.cluster.local/function/openfaas-fn/function-b/handle"
+ENV C_URL="http://dispatcher.default.svc.cluster.local/function/openfaas-fn/function-c/handle"
+ENV D_URL="http://dispatcher.default.svc.cluster.local/function/openfaas-fn/function-d/handle"
+ENV W2_URL="http://dispatcher.default.svc.cluster.local/function/openfaas-fn/function-w2/handle"
+ENV RW_URL="http://dispatcher.default.svc.cluster.local/function/openfaas-fn/function-rw/handle"
 
 COPY --from=builder /app/bin/a .
 ENTRYPOINT ["./a"]
@@ -47,12 +45,12 @@ FROM alpine:latest AS function-b
 EXPOSE 8080
 WORKDIR /app
 
-ENV A_URL="http://host.k3d.internal:8090/function/openfaas-fn/function-a"
-ENV B_URL="http://host.k3d.internal:8090/function/openfaas-fn/function-b"
-ENV C_URL="http://host.k3d.internal:8090/function/openfaas-fn/function-c"
-ENV D_URL="http://host.k3d.internal:8090/function/openfaas-fn/function-d"
-ENV W2_URL="http://host.k3d.internal:8090/function/openfaas-fn/function-w2"
-ENV RW_URL="http://host.k3d.internal:8090/function/openfaas-fn/function-rw"
+ENV A_URL="http://dispatcher.default.svc.cluster.local/function/openfaas-fn/function-a/handle"
+ENV B_URL="http://dispatcher.default.svc.cluster.local/function/openfaas-fn/function-b/handle"
+ENV C_URL="http://dispatcher.default.svc.cluster.local/function/openfaas-fn/function-c/handle"
+ENV D_URL="http://dispatcher.default.svc.cluster.local/function/openfaas-fn/function-d/handle"
+ENV W2_URL="http://dispatcher.default.svc.cluster.local/function/openfaas-fn/function-w2/handle"
+ENV RW_URL="http://dispatcher.default.svc.cluster.local/function/openfaas-fn/function-rw/handle"
 
 COPY --from=builder /app/bin/b .
 ENTRYPOINT ["./b"]
@@ -62,12 +60,12 @@ FROM alpine:latest AS function-c
 EXPOSE 8080
 WORKDIR /app
 
-ENV A_URL="http://host.k3d.internal:8090/function/openfaas-fn/function-a"
-ENV B_URL="http://host.k3d.internal:8090/function/openfaas-fn/function-b"
-ENV C_URL="http://host.k3d.internal:8090/function/openfaas-fn/function-c"
-ENV D_URL="http://host.k3d.internal:8090/function/openfaas-fn/function-d"
-ENV W2_URL="http://host.k3d.internal:8090/function/openfaas-fn/function-w2"
-ENV RW_URL="http://host.k3d.internal:8090/function/openfaas-fn/function-rw"
+ENV A_URL="http://dispatcher.default.svc.cluster.local/function/openfaas-fn/function-a/handle"
+ENV B_URL="http://dispatcher.default.svc.cluster.local/function/openfaas-fn/function-b/handle"
+ENV C_URL="http://dispatcher.default.svc.cluster.local/function/openfaas-fn/function-c/handle"
+ENV D_URL="http://dispatcher.default.svc.cluster.local/function/openfaas-fn/function-d/handle"
+ENV W2_URL="http://dispatcher.default.svc.cluster.local/function/openfaas-fn/function-w2/handle"
+ENV RW_URL="http://dispatcher.default.svc.cluster.local/function/openfaas-fn/function-rw/handle"
 
 COPY --from=builder /app/bin/c .
 ENTRYPOINT ["./c"]
@@ -91,12 +89,12 @@ FROM alpine:latest AS function-d
 EXPOSE 8080
 WORKDIR /app
 
-ENV A_URL="http://host.k3d.internal:8090/function/openfaas-fn/function-a"
-ENV B_URL="http://host.k3d.internal:8090/function/openfaas-fn/function-b"
-ENV C_URL="http://host.k3d.internal:8090/function/openfaas-fn/function-c"
-ENV D_URL="http://host.k3d.internal:8090/function/openfaas-fn/function-d"
-ENV W2_URL="http://host.k3d.internal:8090/function/openfaas-fn/function-w2"
-ENV RW_URL="http://host.k3d.internal:8090/function/openfaas-fn/function-rw"
+ENV A_URL="http://dispatcher.default.svc.cluster.local/function/openfaas-fn/function-a/handle"
+ENV B_URL="http://dispatcher.default.svc.cluster.local/function/openfaas-fn/function-b/handle"
+ENV C_URL="http://dispatcher.default.svc.cluster.local/function/openfaas-fn/function-c/handle"
+ENV D_URL="http://dispatcher.default.svc.cluster.local/function/openfaas-fn/function-d/handle"
+ENV W2_URL="http://dispatcher.default.svc.cluster.local/function/openfaas-fn/function-w2/handle"
+ENV RW_URL="http://dispatcher.default.svc.cluster.local/function/openfaas-fn/function-rw/handle"
 
 COPY --from=builder /app/bin/d .
 ENTRYPOINT ["./d"]
