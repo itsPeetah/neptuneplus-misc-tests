@@ -1,0 +1,239 @@
+{
+    "apiVersion": "v1",
+    "items": [
+        {
+            "apiVersion": "systemautoscaler.polimi.it/v1beta1",
+            "kind": "PodScale",
+            "metadata": {
+                "creationTimestamp": "2025-08-23T08:53:24Z",
+                "generation": 22,
+                "labels": {
+                    "edgeautoscaler.polimi.it/function-name": "prime-numbers-callee-sequential",
+                    "edgeautoscaler.polimi.it/function-namespace": "openfaas-fn",
+                    "system.autoscaler/node": "k3d-edge-autoscaler-agent-0"
+                },
+                "name": "pod-prime-numbers-callee-sequential-2zcv6drx",
+                "namespace": "openfaas-fn",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "systemautoscaler.polimi.it/v1beta1",
+                        "kind": "ServiceLevelAgreement",
+                        "name": "prime-numbers-callee-sequential",
+                        "uid": "3fdf22f3-26af-48f8-83d6-b954ff9dde3f"
+                    }
+                ],
+                "resourceVersion": "3943",
+                "uid": "bbf44db6-a18e-438d-8120-14f1d44235c0"
+            },
+            "spec": {
+                "container": "prime-numbers-callee-sequential",
+                "desired": {
+                    "cpu": "3242m",
+                    "memory": "768Mi"
+                },
+                "namespace": "openfaas-fn",
+                "pod": "prime-numbers-callee-sequential-2zcv6drx",
+                "service": "prime-numbers-callee-sequential",
+                "serviceLevelAgreement": "prime-numbers-callee-sequential"
+            },
+            "status": {
+                "actual": {
+                    "cpu": "3116m",
+                    "memory": "768Mi"
+                },
+                "capped": {
+                    "cpu": "3242m",
+                    "memory": "768Mi"
+                }
+            }
+        },
+        {
+            "apiVersion": "systemautoscaler.polimi.it/v1beta1",
+            "kind": "PodScale",
+            "metadata": {
+                "creationTimestamp": "2025-08-23T08:51:59Z",
+                "generation": 20,
+                "labels": {
+                    "edgeautoscaler.polimi.it/function-name": "prime-numbers-callee-sequential",
+                    "edgeautoscaler.polimi.it/function-namespace": "openfaas-fn",
+                    "system.autoscaler/node": "k3d-edge-autoscaler-agent-1"
+                },
+                "name": "pod-prime-numbers-callee-sequential-opsb6qip",
+                "namespace": "openfaas-fn",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "systemautoscaler.polimi.it/v1beta1",
+                        "kind": "ServiceLevelAgreement",
+                        "name": "prime-numbers-callee-sequential",
+                        "uid": "3fdf22f3-26af-48f8-83d6-b954ff9dde3f"
+                    }
+                ],
+                "resourceVersion": "3662",
+                "uid": "03201b67-ea57-403b-beb5-541dd0b0e4b9"
+            },
+            "spec": {
+                "container": "prime-numbers-callee-sequential",
+                "desired": {
+                    "cpu": "9354m",
+                    "memory": "768Mi"
+                },
+                "namespace": "openfaas-fn",
+                "pod": "prime-numbers-callee-sequential-opsb6qip",
+                "service": "prime-numbers-callee-sequential",
+                "serviceLevelAgreement": "prime-numbers-callee-sequential"
+            },
+            "status": {
+                "actual": {
+                    "cpu": "9354m",
+                    "memory": "768Mi"
+                },
+                "capped": {
+                    "cpu": "9354m",
+                    "memory": "768Mi"
+                }
+            }
+        },
+        {
+            "apiVersion": "systemautoscaler.polimi.it/v1beta1",
+            "kind": "PodScale",
+            "metadata": {
+                "creationTimestamp": "2025-08-23T08:52:04Z",
+                "generation": 23,
+                "labels": {
+                    "edgeautoscaler.polimi.it/function-name": "prime-numbers-caller-sequential",
+                    "edgeautoscaler.polimi.it/function-namespace": "openfaas-fn",
+                    "system.autoscaler/node": "k3d-edge-autoscaler-agent-0"
+                },
+                "name": "pod-prime-numbers-caller-sequential-jzb4h4x0",
+                "namespace": "openfaas-fn",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "systemautoscaler.polimi.it/v1beta1",
+                        "kind": "ServiceLevelAgreement",
+                        "name": "prime-numbers-caller-sequential",
+                        "uid": "277fd98e-6557-48e3-83c4-8caba5879248"
+                    }
+                ],
+                "resourceVersion": "3909",
+                "uid": "b8086e1b-4366-4524-b252-702ad67e0c91"
+            },
+            "spec": {
+                "container": "prime-numbers-caller-sequential",
+                "desired": {
+                    "cpu": "288m",
+                    "memory": "768Mi"
+                },
+                "namespace": "openfaas-fn",
+                "pod": "prime-numbers-caller-sequential-jzb4h4x0",
+                "service": "prime-numbers-caller-sequential",
+                "serviceLevelAgreement": "prime-numbers-caller-sequential"
+            },
+            "status": {
+                "actual": {
+                    "cpu": "288m",
+                    "memory": "768Mi"
+                },
+                "capped": {
+                    "cpu": "300m",
+                    "memory": "768Mi"
+                }
+            }
+        },
+        {
+            "apiVersion": "systemautoscaler.polimi.it/v1beta1",
+            "kind": "PodScale",
+            "metadata": {
+                "creationTimestamp": "2025-08-23T08:52:04Z",
+                "generation": 36,
+                "labels": {
+                    "edgeautoscaler.polimi.it/function-name": "prime-numbers-caller-sequential-nodep",
+                    "edgeautoscaler.polimi.it/function-namespace": "openfaas-fn",
+                    "system.autoscaler/node": "k3d-edge-autoscaler-agent-0"
+                },
+                "name": "pod-prime-numbers-caller-sequential-nodep-kcegta6m",
+                "namespace": "openfaas-fn",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "systemautoscaler.polimi.it/v1beta1",
+                        "kind": "ServiceLevelAgreement",
+                        "name": "prime-numbers-caller-sequential-nodep",
+                        "uid": "6e3c6a7b-ea7a-49d1-98a6-e801c5f21f83"
+                    }
+                ],
+                "resourceVersion": "3939",
+                "uid": "a4ca634c-6658-4d1e-a630-3b6f2774d6bd"
+            },
+            "spec": {
+                "container": "prime-numbers-caller-sequential-nodep",
+                "desired": {
+                    "cpu": "10512m",
+                    "memory": "768Mi"
+                },
+                "namespace": "openfaas-fn",
+                "pod": "prime-numbers-caller-sequential-nodep-kcegta6m",
+                "service": "prime-numbers-caller-sequential-nodep",
+                "serviceLevelAgreement": "prime-numbers-caller-sequential-nodep"
+            },
+            "status": {
+                "actual": {
+                    "cpu": "10106m",
+                    "memory": "768Mi"
+                },
+                "capped": {
+                    "cpu": "10512m",
+                    "memory": "768Mi"
+                }
+            }
+        },
+        {
+            "apiVersion": "systemautoscaler.polimi.it/v1beta1",
+            "kind": "PodScale",
+            "metadata": {
+                "creationTimestamp": "2025-08-23T08:37:53Z",
+                "generation": 32,
+                "labels": {
+                    "edgeautoscaler.polimi.it/function-name": "prime-numbers",
+                    "edgeautoscaler.polimi.it/function-namespace": "openfaas-fn",
+                    "system.autoscaler/node": "k3d-edge-autoscaler-agent-0"
+                },
+                "name": "pod-prime-numbers-k2hh3gdn",
+                "namespace": "openfaas-fn",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "systemautoscaler.polimi.it/v1beta1",
+                        "kind": "ServiceLevelAgreement",
+                        "name": "prime-numbers",
+                        "uid": "2ed65f50-f7bc-4163-a3b9-3d37c8bc4e78"
+                    }
+                ],
+                "resourceVersion": "3889",
+                "uid": "98156c78-1dd1-4ddb-b7f7-bae2e57b8af5"
+            },
+            "spec": {
+                "container": "prime-numbers",
+                "desired": {
+                    "cpu": "5m",
+                    "memory": "768Mi"
+                },
+                "namespace": "openfaas-fn",
+                "pod": "prime-numbers-k2hh3gdn",
+                "service": "prime-numbers",
+                "serviceLevelAgreement": "prime-numbers"
+            },
+            "status": {
+                "actual": {
+                    "cpu": "288m",
+                    "memory": "768Mi"
+                },
+                "capped": {
+                    "cpu": "300m",
+                    "memory": "768Mi"
+                }
+            }
+        }
+    ],
+    "kind": "List",
+    "metadata": {
+        "resourceVersion": ""
+    }
+}

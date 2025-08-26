@@ -52,7 +52,7 @@ func handlePrime(w http.ResponseWriter, r *http.Request) {
 	// 	return
 	// }
 
-	count := 5
+	count := 2
 
 	switch q.Get("mode") {
 	case "seq":
@@ -86,7 +86,7 @@ func handlePrime(w http.ResponseWriter, r *http.Request) {
 
 func callSequential(count int) {
 
-	endpoint := fmt.Sprintf("%s/%d", url, 100000)
+	endpoint := fmt.Sprintf("%s/%d", url, 50000)
 
 	log.Printf("Calling %s %d times sequentially", endpoint, count)
 	for i := 0; i < count; i++ {

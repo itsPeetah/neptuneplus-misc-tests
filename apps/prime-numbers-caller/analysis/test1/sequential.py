@@ -24,15 +24,15 @@ def run_requests(url: str, count: int, output_dir: str):
             target=do_request,
             args=(url, f"{output_dir}/{i}.json", f"{output_dir} #{i}"),
         ).start()
-        time.sleep(0.5)
+        time.sleep(1)
 
 
 threads = [
     t
     for i, t in enumerate(
         [
-            threading.Thread(target=run_requests, args=(SEQ_URL, 600, "./out_dep")),
-            threading.Thread(target=run_requests, args=(NODEP_URL, 600, "./out_nodep")),
+            threading.Thread(target=run_requests, args=(SEQ_URL, 900, "./out_dep")),
+            threading.Thread(target=run_requests, args=(NODEP_URL, 900, "./out_nodep")),
         ]
     )
     if t.start() or print(f"Started thread #{i+1}") or True
