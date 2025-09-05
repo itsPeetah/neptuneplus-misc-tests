@@ -81,18 +81,6 @@ spec:
           functionNamespace: openfaas-fn
           edgeId: 1
           edgeMultiplier: 1
-        - functionName: prime-numbers-callee-parallel
-          functionNamespace: openfaas-fn
-          edgeId: 1
-          edgeMultiplier: 1
-        - functionName: prime-numbers-callee-parallel
-          functionNamespace: openfaas-fn
-          edgeId: 1
-          edgeMultiplier: 1
-        - functionName: prime-numbers-callee-parallel
-          functionNamespace: openfaas-fn
-          edgeId: 1
-          edgeMultiplier: 1
     - functionName: prime-numbers-callee-parallel
       functionNamespace: openfaas-fn
       nominalResponseTime: 100m

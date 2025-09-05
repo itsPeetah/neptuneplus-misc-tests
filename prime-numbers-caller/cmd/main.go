@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"os"
 	"strconv"
+	"strings"
 	"sync"
 )
 
@@ -53,27 +54,30 @@ func handlePrime(w http.ResponseWriter, r *http.Request) {
 	// }
 
 	count := 2
+	resp := ""
 
 	switch q.Get("mode") {
 	case "seq":
 		url = os.Getenv("PRIME_NUMBERS_URL_SEQUENTIAL")
+		url = strings.TrimSuffix(url, "/")
 
 		if len(url) < 1 {
 			log.Fatalf("No prime-numbers URL defined in env vars.")
 			os.Exit(1)
 		}
 
-		callSequential(count)
+		resp = callSequential(count)
 	case "par":
 
 		url = os.Getenv("PRIME_NUMBERS_URL_PARALLEL")
+		url = strings.TrimSuffix(url, "/")
 
 		if len(url) < 1 {
 			log.Fatalf("No prime-numbers URL defined in env vars.")
 			os.Exit(1)
 		}
 
-		callParallel(count)
+		resp = callParallel(count)
 	default:
 		w.WriteHeader(http.StatusBadRequest)
 		w.Write([]byte("Missing mode parameter."))
@@ -81,29 +85,31 @@ func handlePrime(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.WriteHeader(http.StatusOK)
-	w.Write([]byte(r.URL.RawQuery))
+	w.Write([]byte(resp))
 }
 
-func callSequential(count int) {
+func callSequential(count int) string {
 
 	endpoint := fmt.Sprintf("%s/%d", url, 50000)
+	response := ""
 
 	log.Printf("Calling %s %d times sequentially", endpoint, count)
 	for i := 0; i < count; i++ {
-		doRequest(endpoint)
+		response += doRequest(endpoint) + "\n"
 	}
+	return response
 }
 
-func callParallel(count int) {
+func callParallel(count int) string {
 	log.Printf("Calling %s %d times in parallel", url, count)
-
+	response := ""
 	var wg sync.WaitGroup
 	wg.Add(count)
 
 	callFunc := func(multiplier int) {
 		defer wg.Done()
 		endpoint := fmt.Sprintf("%s/%d", url, 20000*multiplier)
-		doRequest(endpoint)
+		response += doRequest(endpoint) + "\n"
 	}
 
 	for i := 0; i < count; i++ {
@@ -111,12 +117,16 @@ func callParallel(count int) {
 	}
 
 	wg.Wait()
+
+	return response
 }
 
-func doRequest(endpoint string) {
+func doRequest(endpoint string) string {
 	_, err := http.Get(endpoint)
 
 	if err != nil {
-		log.Printf("Error while making request to %s: %v", endpoint, err)
+		r := fmt.Sprintf("Error while making request to %s: %v\n", endpoint, err)
+		log.Print(r)
 	}
+	return "OK"
 }
