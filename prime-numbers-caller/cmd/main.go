@@ -90,7 +90,7 @@ func handlePrime(w http.ResponseWriter, r *http.Request) {
 
 func callSequential(count int) string {
 
-	endpoint := fmt.Sprintf("%s/%d", url, 50000)
+	endpoint := url
 	response := ""
 
 	log.Printf("Calling %s %d times sequentially", endpoint, count)
@@ -108,7 +108,7 @@ func callParallel(count int) string {
 
 	callFunc := func(multiplier int) {
 		defer wg.Done()
-		endpoint := fmt.Sprintf("%s/%d", url, 20000*multiplier)
+		endpoint := url
 		response += doRequest(endpoint) + "\n"
 	}
 
