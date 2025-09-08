@@ -13,8 +13,8 @@ FROM alpine:latest AS function
 EXPOSE 8080
 WORKDIR /app
 
-ENV PRIME_NUMBERS_URL_PARALLEL="http://prime-numbers-invoked-parallel.default.svc.cluster.local/prime/20000"
-ENV PRIME_NUMBERS_URL_SEQUENTIAL="http://prime-numbers-invoked-sequential.default.svc.cluster.local/prime/20000"
+ENV PRIME_NUMBERS_URL_PARALLEL="http://prime-numbers-invoked-parallel.default.svc.cluster.local/prime/50000"
+ENV PRIME_NUMBERS_URL_SEQUENTIAL="http://prime-numbers-invoked-sequential.default.svc.cluster.local/prime/50000"
 ENV SERVICE_PORT="8080"
 
 COPY --from=builder /app/bin/program .
