@@ -1,5 +1,6 @@
 IMAGE_BASE_NAME := itspeetah/np-prime-numbers-caller
 IMAGE_TAG := latest
+IMAGE_TAG_PROFILING := prof
 
 publish: build push
 	
@@ -43,3 +44,15 @@ undeploy-%:
 	@echo "Deploying functions..."
 	kubectl delete -f ./config/$*
 	@echo "Done"
+
+
+
+# PROFILING
+
+publish-prof: build-prof push-prof
+
+build-prof:
+	docker build --target function -t $(IMAGE_BASE_NAME):$(IMAGE_TAG_PROFILING) -f ./build-tools/Dockerfile-profiling .
+
+push-prof:
+	docker push $(IMAGE_BASE_NAME):$(IMAGE_TAG_PROFILING)

@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"io"
 	"log"
 	"net/http"
 	"os"
@@ -95,7 +96,8 @@ func callSequential(count int) string {
 
 	log.Printf("Calling %s %d times sequentially", endpoint, count)
 	for i := 0; i < count; i++ {
-		response += doRequest(endpoint) + "\n"
+		r := doRequest(endpoint)
+		response += r + "\n"
 	}
 	return response
 }
@@ -122,11 +124,23 @@ func callParallel(count int) string {
 }
 
 func doRequest(endpoint string) string {
-	_, err := http.Get(endpoint)
+	resp, err := http.Get(endpoint)
 
 	if err != nil {
 		r := fmt.Sprintf("Error while making request to %s: %v\n", endpoint, err)
 		log.Print(r)
 	}
-	return "OK"
+
+	defer resp.Body.Close()
+
+	if resp.StatusCode == http.StatusOK {
+		bodyBytes, err := io.ReadAll(resp.Body)
+		if err != nil {
+			log.Fatal(err)
+		}
+		bodyString := string(bodyBytes)
+		return bodyString
+	} else {
+		return "STATUS CODE not 2xx"
+	}
 }
