@@ -7,15 +7,14 @@ COPY go.mod .
 
 COPY . .
 
-RUN CGO_ENABLED=0 GOOS=linux go build -ldflags="-s -w" -o /app/bin/program ./cmd
+RUN CGO_ENABLED=0 GOOS=linux go build -ldflags="-s -w" -o /app/bin/program ./pkg
 
 FROM alpine:latest AS function
 EXPOSE 8080
 WORKDIR /app
 
-ENV PRIME_NUMBERS_URL_PARALLEL="http://dispatcher.default.svc.cluster.local/function/openfaas-fn/prime-numbers-callee-parallel/prime/20000"
-ENV PRIME_NUMBERS_URL_SEQUENTIAL="http://dispatcher.default.svc.cluster.local/function/openfaas-fn/prime-numbers-callee-sequential/prime/20000"
-ENV SERVICE_PORT="8080"
+ENV PRIME_NUMBERS_URL_PARALLEL="http://dispatcher.default.svc.cluster.local/function/openfaas-fn/prime-numbers-invoked-parallel/"
+ENV PRIME_NUMBERS_URL_SEQUENTIAL="http://dispatcher.default.svc.cluster.local/function/openfaas-fn/prime-numbers-invoked-sequential/"
 
 COPY --from=builder /app/bin/program .
 ENTRYPOINT ["./program"]
