@@ -11,6 +11,21 @@ import (
 )
 
 func doRequest(endpoint string) string {
+	// transport := &http.Transport{
+	// 	DisableKeepAlives: true,
+	// }
+	// client := &http.Client{Timeout: 10 * time.Second, Transport: transport}
+	// req, err := http.NewRequest("GET", endpoint, nil)
+	// if err != nil {
+	// 	// this should not happen
+	// }
+
+	// req.Header.Add("Cache-Control", "no-cache, no-store, must-revalidate")
+	// req.Header.Add("Pragma", "no-cache")
+	// req.Header.Add("Expires", "0")
+
+	// resp, err := client.Do(req)
+
 	resp, err := http.Get(endpoint)
 
 	if err != nil {
@@ -47,15 +62,19 @@ func callSequential(count int, upperBound int) string {
 
 	log.Printf("Calling %s %d times sequentially", endpoint, count)
 
-	t0 := time.Now()
+	t0 := time.Now().UnixMilli()
+	t1 := t0
 
 	response := ""
 	for i := 0; i < count; i++ {
 		r := doRequest(endpoint)
+		t2 := time.Now().UnixMilli()
+		log.Printf("request no. %d (%dms)", i+1, t2-t1)
+		t1 = t2
 		response += r + "\n"
 	}
 
-	log.Printf("Finished in: %dms", time.Now().UnixMilli()-t0.UnixMilli())
+	log.Printf("Finished in: %dms", time.Now().UnixMilli()-t0)
 
 	return response
 }
@@ -73,7 +92,11 @@ func callParallel(count int, upperBound int) string {
 
 	callFunc := func(id int) {
 		defer wg.Done()
-		response += fmt.Sprintf("%d - %s\n", id, doRequest(endpoint))
+		t1 := time.Now().UnixMilli()
+		r := doRequest(endpoint)
+		t2 := time.Now().UnixMilli()
+		response += fmt.Sprintf("%d - %s\n", id, r)
+		log.Printf("request no. %d (%dms)", id+1, t2-t1)
 	}
 
 	log.Printf("Calling %s %d times in parallel", endpoint, count)
@@ -81,7 +104,7 @@ func callParallel(count int, upperBound int) string {
 	t0 := time.Now()
 
 	for i := 0; i < count; i++ {
-		go callFunc(i + 1)
+		go callFunc(i)
 	}
 
 	wg.Wait()
